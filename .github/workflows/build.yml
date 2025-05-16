@@ -20,10 +20,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore FaceRecognition.API.sln
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build FaceRecognition.API.sln --no-restore
 
       - name: Test with the dotnet CLI
-        run: dotnet test --no-build
+        run: dotnet test FaceRecognition.API.sln --no-build
