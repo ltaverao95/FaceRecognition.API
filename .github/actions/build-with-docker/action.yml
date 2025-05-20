@@ -26,6 +26,6 @@ runs:
       continue-on-error: false
 
     - name: Start application-specific services using Docker Compose
-      run: docker-compose build -f ${{ inputs.dockerCompose }}
+      run: docker-compose build ${{ inputs.dockerCompose }}
       shell: bash
       continue-on-error: false
