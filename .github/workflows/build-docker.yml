@@ -17,5 +17,5 @@ jobs:
 
       - name: Run Docker Build
         uses: ./.github/actions/build-docker-action.yml
-        With:
+        with:
           dockerCompose: docker-compose.yml
