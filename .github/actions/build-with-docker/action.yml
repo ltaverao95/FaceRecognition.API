@@ -10,22 +10,12 @@ runs:
   using: "composite"
   steps:
   
-    - name: Install Docker using Docker's official script
-      shell: bash
-      run: |
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-      continue-on-error: false
-
-    - name: Install Docker Compose
-      shell: bash
-      run: |
-        sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
-        docker-compose --version
-      continue-on-error: false
+    - name: Set up Docker Compose
+      uses: docker/setup-compose-action@v1
+      with:
+        version: latest
 
     - name: Start application-specific services using Docker Compose
-      run: docker-compose build ${{ inputs.dockerCompose }}
+      run: docker-compose build ./
       shell: bash
       continue-on-error: false
