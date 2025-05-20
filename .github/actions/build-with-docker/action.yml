@@ -1,10 +1,5 @@
 name: Build With Docker
 description: Build the application using Docker and Docker Compose
-inputs:
-  dockerCompose:
-    description: 'Path to the Docker Compose file'
-    required: true
-    default: 'docker-compose.yml'
 
 runs:
   using: "composite"
@@ -13,5 +8,5 @@ runs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    -name: Build and push
+    - name: Build and push
       uses: docker/build-push-action@v6

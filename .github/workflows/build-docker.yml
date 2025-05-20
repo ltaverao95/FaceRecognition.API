@@ -14,5 +14,3 @@ jobs:
     steps:
       - name: Build With Docker
         uses: ./.github/actions/build-with-docker
-        with:
-          dockerCompose: docker-compose.yml
