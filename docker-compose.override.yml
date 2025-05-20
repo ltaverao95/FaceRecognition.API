@@ -2,28 +2,28 @@ services:
   faces-api:
     build:
       context: .
-      dockerfile: Faces.API/Dockerfile
+      dockerfile: Faces/Faces.API/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
   faces-webmvc:
     build:
       context: .
-      dockerfile: Faces.WebMvc/Dockerfile
+      dockerfile: Faces.Web/Faces.WebMvc/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
   notification-customer-notificationservice:
     build:
       context: .
-      dockerfile: Customer.NotificationService/Dockerfile
+      dockerfile: Notifications/Customer/Notification.Customer.NotificationService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
   orders-api:
     build:
       context: .
-      dockerfile: Orders.API/Dockerfile
+      dockerfile: Ordering/Orders.API/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - OrdersContextConnection=server=sqlDbService;Database=OrdersDb;User Id=sa;password=Password12345;TrustServerCertificate=true;

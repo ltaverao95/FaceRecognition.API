@@ -399,3 +399,6 @@ FodyWeavers.xsd
 
 # Internal Projects
 builds/mssql
+
+*.key
+*.crt

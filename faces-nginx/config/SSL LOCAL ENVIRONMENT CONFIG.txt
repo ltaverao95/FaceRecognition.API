@@ -1,0 +1,16 @@
+Locate under any empty folder to store the files bellow:
+
+1. winpty openssl genrsa -des3 -out YOUR_CA_KEY_NAME.key 2048
+	Password: YOUR_PASSWORD
+2. openssl req -x509 -new -nodes -key YOUR_CA_KEY_NAME.key -sha256 -days 1825 -out YOUR_CA_PEM_NAME.pem
+3. Run WIN + R and type: "mmc"
+4. Under Trusted Root Certification Authorities import your YOUR_CA_PEM_NAME.pem file, it should be successful
+5. openssl genrsa -out YOUR_CERT_NAME.local.key 2048 (local means for dev environments)
+6. openssl req -new -key YOUR_CERT_NAME.local.key -out YOUR_CERT_NAME.local.csr
+7. create file YOUR_CERT_NAME.local.ext (it doesn't matter the name)
+8. Inside your YOUR_CERT_NAME.local.ext file 
+	- DNS.1 set the new name you want to provide for the DNS. eg: felipetavera.local
+9. openssl x509 -req -in YOUR_CERT_NAME.local.csr -CA YOUR_CA_PEM_NAME.pem -CAkey YOUR_CERT_NAME.local.key -CAcreateserial -out YOUR_CERT_NAME.local.crt -days 825 -sha256 -extfile YOUR_CERT_NAME.local.ext
+
+Register your new domain under the hosts file:
+127.0.0.1 felipetavera.local

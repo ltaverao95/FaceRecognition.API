@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)\Faces.Shared.Common\Faces.Shared.Common.csproj" />
-    <ProjectReference Include="$(SolutionDir)\Messaging.InterfacesConstants\Messaging.Core.csproj" />
-    <ProjectReference Include="$(SolutionDir)\Orders.Core\Orders.Core.csproj" />
+    <ProjectReference Include="..\..\Messaging\Messaging.Core\Messaging.Core.csproj" />
+    <ProjectReference Include="..\..\Shared\Faces.Shared.Common\Faces.Shared.Common.csproj" />
+    <ProjectReference Include="..\Orders.Core\Orders.Core.csproj" />
   </ItemGroup>
 
 </Project>

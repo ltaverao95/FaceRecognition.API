@@ -1,4 +1,4 @@
-name: Build Docker Images
+name: Build and Test
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install dependencies
+      - name: Restore dependencies
         run: dotnet restore FaceRecognition.API.sln
 
       - name: Build

@@ -5,8 +5,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_HTTP_PORTS=80
-      - AzureSubscriptionKey=83cc333ccc9147b1b365e23ffeebc17e
-      - AzureEndPoint=https://faces-api-testing.cognitiveservices.azure.com
+      - AzureSubscriptionKey=YOUR_API_KEY
+      - AzureEndPoint=YOUR_AZURE_URL
     networks:
       - faces-back
 
@@ -83,7 +83,7 @@ services:
     volumes:
       - nginx-config:/etc/nginx/conf.d
     ports:
-      - 80:80
+      - 443:443
     depends_on:
       - faces-webmvc
     healthcheck:

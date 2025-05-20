@@ -5,25 +5,28 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["Faces.API/Faces.API.csproj", "Faces.API/"]
-COPY ["Faces.Core/Faces.Core.csproj", "Faces.Core/"]
-RUN dotnet restore "./Faces.API/Faces.API.csproj"
-COPY . .
-WORKDIR "/src/Faces.API"
-RUN dotnet build "./Faces.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Faces.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+WORKDIR /src
+
+COPY ["Faces/Faces.API/Faces.API.csproj", "Faces/Faces.API/"]
+COPY ["Faces/Faces.Core/Faces.Core.csproj", "Faces/Faces.Core/"]
+
+RUN dotnet restore "Faces/Faces.API/Faces.API.csproj"
+
+COPY ["Faces/Faces.API", "Faces/Faces.API/"]
+COPY ["Faces/Faces.Core", "Faces/Faces.Core/"]
+
+WORKDIR "/src/Faces/Faces.API"
+
+RUN dotnet build "Faces.API.csproj" -c $BUILD_CONFIGURATION --no-restore --no-incremental && \
+    dotnet publish "Faces.API.csproj" -c $BUILD_CONFIGURATION --no-build -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Faces.API.dll"]

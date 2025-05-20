@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Messaging.InterfacesConstants\Messaging.Core.csproj" />
+	  <ProjectReference Include="..\..\Messaging\Messaging.Core\Messaging.Core.csproj" />
 	</ItemGroup>
 
 </Project>
