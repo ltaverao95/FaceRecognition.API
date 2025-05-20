@@ -1,4 +1,4 @@
-name: Build With Docker
+name: Build With Docker CI/CD
 
 on:
   push:
@@ -12,5 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run Docker Build
         uses: ./.github/actions/build-docker-action.yml
+        With:
+          dockerCompose: docker-compose.yml

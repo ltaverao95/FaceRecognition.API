@@ -1,12 +1,15 @@
 name: Build With Docker
 description: Build the application using Docker and Docker Compose
+inputs:
+  dockerCompose:
+    description: 'Path to the Docker Compose file'
+    required: true
+    default: 'docker-compose.yml'
 
 runs:
   using: "composite"
   steps:
-    - name: Checkout repository
-        uses: actions/checkout@v4
-        
+  
     - name: Install Docker using Docker's official script
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
@@ -21,5 +24,5 @@ runs:
       continue-on-error: false
 
     - name: Start application-specific services using Docker Compose
-      run: docker-compose build
+      run: docker-compose build -f ${{ inputs.dockerCompose }}
       continue-on-error: false
