@@ -19,4 +19,4 @@ jobs:
         uses: docker/setup-compose-action@v1.2.0
 
       - name: Build the docker-compose stack
-        run: docker-compose build
+        run: docker compose build
