@@ -12,7 +12,6 @@ runs:
   
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
-      shell: bash
       with:
         dotnet-version: '8.0.x'
 
