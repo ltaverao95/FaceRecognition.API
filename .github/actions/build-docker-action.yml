@@ -4,6 +4,9 @@ description: Build the application using Docker and Docker Compose
 runs:
   using: "composite"
   steps:
+    - name: Checkout repository
+        uses: actions/checkout@v4
+        
     - name: Install Docker using Docker's official script
       run: |
         curl -fsSL https://get.docker.com -o get-docker.sh
