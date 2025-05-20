@@ -1,0 +1,25 @@
+name: Build With Dotnet
+description: Build the application using dotnet cli commands
+
+inputs:
+  solutionName:
+    required: true
+    type: string
+    
+runs:
+  using: "composite"
+  steps:
+  
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ inputs.solutionName}}
+
+    - name: Build
+      run: dotnet build ${{ inputs.solutionName}} --no-restore
+
+    - name: Test with the dotnet CLI
+      run: dotnet test ${{ inputs.solutionName}} --no-build

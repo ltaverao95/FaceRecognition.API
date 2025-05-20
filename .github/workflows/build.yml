@@ -15,16 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v4
+      - name: Build and test
+        uses: ./.github/actions/build-with-dotnet
         with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore dependencies
-        run: dotnet restore FaceRecognition.API.sln
-
-      - name: Build
-        run: dotnet build FaceRecognition.API.sln --no-restore
-
-      - name: Test with the dotnet CLI
-        run: dotnet test FaceRecognition.API.sln --no-build
+          solutionName: 'FaceRecognition.API.sln'
