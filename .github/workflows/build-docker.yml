@@ -16,6 +16,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build With Docker
-        uses: ./.github/actions/build-docker
+        uses: ./.github/actions/build-with-docker
         with:
           dockerCompose: docker-compose.yml
